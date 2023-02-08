@@ -5,7 +5,7 @@ import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contr
 
 contract voting is Ownable{
 
-    // uint256 private winningProposalId;
+    uint256 private winningProposalId;
 
     event VoterRegistered(address voterAddress); 
     event WorkflowStatusChange(WorkflowStatus previousStatus, WorkflowStatus newStatus);
@@ -33,29 +33,29 @@ contract voting is Ownable{
     }
 
     mapping(address => Voter) voters;
-    uint private _voterWhitelistedCount = 0;
+    uint private _voterRegisteredCount = 0;
 
     mapping(address => uint) voterProposalIds;
     Proposal[] voterProposals;
     
     WorkflowStatus private _currentVotingSession;
 
-    function adminWhitelist(address _addrVoter) external onlyOwner{
+    function adminAddRegistered(address _addrVoter) external onlyOwner{
 
-        // TODO: can whitelist the admin ? 
-
-
-        require(!voters[_addrVoter].isRegistered, "The voter is already whitelisted.");
+        require(_currentVotingSession == WorkflowStatus.RegisteringVoters, "The registering voters is not opened yet.");
+        require(!voters[_addrVoter].isRegistered, "The voter is already registered.");
         
         voters[_addrVoter] = Voter(true, false, 0);
-        _voterWhitelistedCount++;
+        _voterRegisteredCount++;
 
         emit VoterRegistered(_addrVoter);
     }
 
     function adminStartProposalsSession() external onlyOwner{
 
-        require(_voterWhitelistedCount > 1, "Need at least 2 whitelisted voter to start a proposal session.");
+        require(_voterRegisteredCount > 1, "Need at least 2 registered voters to start a proposal session.");
+
+//TODO check status
 
         WorkflowStatus previousStatus = _currentVotingSession;
         _currentVotingSession = WorkflowStatus.ProposalsRegistrationStarted;
@@ -76,7 +76,8 @@ contract voting is Ownable{
 
     function adminStartVotingSession() external onlyOwner{
 
-        require(voterProposals.length > 1, "Need at least 2 proposals to start a voting session.");
+        require(_currentVotingSession == WorkflowStatus.ProposalsRegistrationEnded, "The proposal registration is not ended yet.");
+        require(voterProposals.length > 1, "Need at least two proposals to start a voting session.");
 
         WorkflowStatus previousStatus = _currentVotingSession;
         _currentVotingSession = WorkflowStatus.VotingSessionStarted;
@@ -84,16 +85,53 @@ contract voting is Ownable{
         emit WorkflowStatusChange(previousStatus, _currentVotingSession);
     }
 
+    
+    function adminStopVotingSession() external onlyOwner{
+
+        require(_currentVotingSession == WorkflowStatus.VotingSessionStarted, "The voting session is not started yet.");
+
+// TODO: variable count global
+        uint256 votesCount = 0;
+        for(uint i=0; i < voterProposals.length; i++){
+            votesCount += voterProposals[i].voteCount;
+            if(votesCount > 0)
+                break;
+        }
+
+        require(votesCount > 0, "Need at least one vote in a proprosal to stop a voting session.");
+
+        WorkflowStatus previousStatus = _currentVotingSession;
+        _currentVotingSession = WorkflowStatus.VotingSessionEnded;
+
+        emit WorkflowStatusChange(previousStatus, _currentVotingSession);
+    }
+
+    function adminTallyVotes() external onlyOwner{
+        require(_currentVotingSession == WorkflowStatus.VotingSessionEnded, "The proposal registration is not started yet.");
+
+        // TODO: Manage equality
+        uint256 votesCount = 0;
+        for(uint i=0; i < voterProposals.length; i++){
+
+            if(voterProposals[i].voteCount > votesCount){
+                winningProposalId = i;
+            }
+        }
+
+        WorkflowStatus previousStatus = _currentVotingSession;
+        _currentVotingSession = WorkflowStatus.VotesTallied;
+
+        emit WorkflowStatusChange(previousStatus, _currentVotingSession);
+    }
 
 
 
     function voterAddProposal(string calldata _description) external {
         
         require(_currentVotingSession == WorkflowStatus.ProposalsRegistrationStarted, "The proposal registration is not started yet.");
-        require(voters[msg.sender].isRegistered, "You must be whitelisted to make a proposal.");
+        require(voters[msg.sender].isRegistered, "You must be registered to make a proposal.");
         require(bytes(_description).length > 0, "The proposal cannot be empty.");
 
-        // One proposal only ? if yes add require
 
         voterProposals.push(Proposal(_description, 0));
         uint proposalId = voterProposals.length - 1;
@@ -105,19 +143,20 @@ contract voting is Ownable{
     function voterAddVote(uint _proposalId) external{
 
         require(_currentVotingSession == WorkflowStatus.VotingSessionStarted, "The voting session is not started yet.");
-        require(voters[msg.sender].isRegistered, "You must be whitelisted to vote.");
+        require(voters[msg.sender].isRegistered, "You must be registered to vote.");
         require(voters[msg.sender].hasVoted, "You already voted.");
         require(bytes(voterProposals[_proposalId].description).length > 0, "This proposal does not exists.");
         
         voters[msg.sender].votedProposalId = _proposalId;
         voters[msg.sender].hasVoted = true;
+
+        emit Voted(msg.sender, _proposalId);
     }
 
+    function getWinner() public view returns(Proposal memory) {
 
-
-
-
-    function getWinner() public {
-
+        require(_currentVotingSession == WorkflowStatus.VotesTallied, "The count is not over yet.");
+    
+        return voterProposals[winningProposalId];
     }
 }

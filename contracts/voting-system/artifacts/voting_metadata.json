@@ -89,6 +89,19 @@
 				"type": "event"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_addrVoter",
+						"type": "address"
+					}
+				],
+				"name": "adminAddRegistered",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "adminStartProposalsSession",
 				"outputs": [],
@@ -110,14 +123,15 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_addrVoter",
-						"type": "address"
-					}
-				],
-				"name": "adminWhitelist",
+				"inputs": [],
+				"name": "adminStopVotingSession",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "adminTallyVotes",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -125,8 +139,26 @@
 			{
 				"inputs": [],
 				"name": "getWinner",
-				"outputs": [],
-				"stateMutability": "nonpayable",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "description",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "voteCount",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct voting.Proposal",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -227,11 +259,11 @@
 	},
 	"sources": {
 		"contracts/voting-system/voting.sol": {
-			"keccak256": "0x58926929ebc47da1eae1014ca098972dbfdf6ad78ad2246b90c19784543793a9",
+			"keccak256": "0xb6d4e300bfeca5678d4471010e81b919f26fd6c06f48ab23957ec70c7b26a15e",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://00e2d4ecbe3addbb76f6ef147759a0b6cf733eb156875c37d078608c4dd7ae28",
-				"dweb:/ipfs/QmPEJsHGhkR3eFdRy3qdgR3JywShfkeAdmaY27zbfHgbq2"
+				"bzz-raw://375b362f668daa8fecee67afa5b578bdd85d0f2e59a4136882fc34a11203696c",
+				"dweb:/ipfs/QmV49XfgnaG44SsbPpDeXcrAratSqSuaF26gKVwELgu2cu"
 			]
 		},
 		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol": {
