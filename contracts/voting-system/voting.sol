@@ -146,4 +146,8 @@ contract voting is Ownable{
     
         return voterProposals[winningProposalId];
     }
+
+    //TODO: modifier only voter
+    //TODO: method pour voir toutes les proposals
+    // TODO: method pour voir les proposals par address
 }
