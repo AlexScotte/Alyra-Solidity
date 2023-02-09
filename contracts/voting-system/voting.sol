@@ -53,8 +53,7 @@ contract voting is Ownable{
 
     function adminStartProposalsSession() external onlyOwner{
 
-//TODO error message
-        require(_currentVotingSession == WorkflowStatus.RegisteringVoters, "The registering voters is not ended yet.");
+        require(_currentVotingSession == WorkflowStatus.RegisteringVoters, "The registering voters is not opened yet.");
         require(_voterRegisteredCount > 1, "Need at least two registered voters to start a proposal session.");
 
         WorkflowStatus previousStatus = _currentVotingSession;
@@ -143,7 +142,7 @@ contract voting is Ownable{
 
         require(_currentVotingSession == WorkflowStatus.VotingSessionStarted, "The voting session is not started yet.");
         require(voters[msg.sender].isRegistered, "You must be registered to vote.");
-        require(voters[msg.sender].hasVoted, "You already voted.");
+        require(!voters[msg.sender].hasVoted, "You already voted.");
         require(bytes(voterProposals[_proposalId].description).length > 0, "This proposal does not exists.");
         
         voters[msg.sender].votedProposalId = _proposalId;
