@@ -110,7 +110,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/exoCours/exoBalance.sol": "exoBalance"
+			"contracts/exoCours/exoBalance/exoBalance.sol": "exoBalance"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -124,7 +124,7 @@
 		"remappings": []
 	},
 	"sources": {
-		"contracts/exoCours/exoBalance.sol": {
+		"contracts/exoCours/exoBalance/exoBalance.sol": {
 			"keccak256": "0xe4b8b479b9aa69ae3e9c01a7bd3b292b7943117640ac76ef6e696ab0b0bfc500",
 			"license": "GPL-3.0",
 			"urls": [
