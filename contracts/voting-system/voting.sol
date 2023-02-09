@@ -40,6 +40,7 @@ contract voting is Ownable{
     
     WorkflowStatus private _currentVotingSession;
 
+    uint private _votesCount = 0;
 
     function _changeWorkflowStatus(WorkflowStatus newStatus) private {
 
@@ -88,16 +89,7 @@ contract voting is Ownable{
     function adminStopVotingSession() external onlyOwner{
 
         require(_currentVotingSession == WorkflowStatus.VotingSessionStarted, "The voting session is not started yet.");
-
-        // TODO: variable count global
-        uint256 votesCount = 0;
-        for(uint i=0; i < voterProposals.length; i++){
-            votesCount += voterProposals[i].voteCount;
-            if(votesCount > 0)
-                break;
-        }
-
-        require(votesCount > 0, "Need at least one vote in a proprosal to stop a voting session.");
+        require(_votesCount > 0, "Need at least one vote in a proprosal to stop a voting session.");
 
         _changeWorkflowStatus(WorkflowStatus.VotingSessionEnded);
     }
@@ -142,6 +134,8 @@ contract voting is Ownable{
         
         voters[msg.sender].votedProposalId = _proposalId;
         voters[msg.sender].hasVoted = true;
+        voterProposals[_proposalId].voteCount++;
+        _votesCount++;
 
         emit Voted(msg.sender, _proposalId);
     }
