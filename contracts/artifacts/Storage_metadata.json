@@ -1,0 +1,45 @@
+{
+	"compiler": {
+		"version": "0.8.13+commit.abaa5c0e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/exoCours.sol": "Storage"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/exoCours.sol": {
+			"keccak256": "0xe636d961117df61dd0acf8f2cfe0f8eb77a2e2f3f4ad92748c8408e909ba82e9",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://f64d32b300e85a164c63c98efc9ef9e0db54efbf95f0b12d93b055f868a9f0c6",
+				"dweb:/ipfs/QmQkHUCD7k6cRN96zRRGgkunHcwyTWh7cEQQpmZMNCnpCr"
+			]
+		}
+	},
+	"version": 1
+}
