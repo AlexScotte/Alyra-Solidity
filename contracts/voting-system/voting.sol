@@ -40,6 +40,16 @@ contract voting is Ownable{
     
     WorkflowStatus private _currentVotingSession;
 
+
+    function _changeWorkflowStatus(WorkflowStatus newStatus) private {
+
+        WorkflowStatus previousStatus = _currentVotingSession;
+        _currentVotingSession = newStatus;
+
+        emit WorkflowStatusChange(previousStatus, _currentVotingSession);
+    }
+
+
     function adminAddRegistered(address _addrVoter) external onlyOwner{
 
         require(_currentVotingSession == WorkflowStatus.RegisteringVoters, "The registering voters is not opened yet.");
@@ -56,10 +66,7 @@ contract voting is Ownable{
         require(_currentVotingSession == WorkflowStatus.RegisteringVoters, "The registering voters is not opened yet.");
         require(_voterRegisteredCount > 1, "Need at least two registered voters to start a proposal session.");
 
-        WorkflowStatus previousStatus = _currentVotingSession;
-        _currentVotingSession = WorkflowStatus.ProposalsRegistrationStarted;
-
-        emit WorkflowStatusChange(previousStatus, _currentVotingSession);
+        _changeWorkflowStatus(WorkflowStatus.ProposalsRegistrationStarted);
     }
 
     function adminStopProposalsSession() external onlyOwner{
@@ -67,20 +74,14 @@ contract voting is Ownable{
         require(_currentVotingSession == WorkflowStatus.ProposalsRegistrationStarted, "The proposal registration is not started yet.");
         require(voterProposals.length > 1, "Need at least two proposals to stop a proposal session.");
 
-        WorkflowStatus previousStatus = _currentVotingSession;        
-        _currentVotingSession = WorkflowStatus.ProposalsRegistrationEnded;
-
-        emit WorkflowStatusChange(previousStatus, _currentVotingSession);
+        _changeWorkflowStatus(WorkflowStatus.ProposalsRegistrationEnded);
     }
 
     function adminStartVotingSession() external onlyOwner{
 
         require(_currentVotingSession == WorkflowStatus.ProposalsRegistrationEnded, "The proposal registration is not ended yet.");
 
-        WorkflowStatus previousStatus = _currentVotingSession;
-        _currentVotingSession = WorkflowStatus.VotingSessionStarted;
-
-        emit WorkflowStatusChange(previousStatus, _currentVotingSession);
+        _changeWorkflowStatus(WorkflowStatus.VotingSessionStarted);
     }
 
     
@@ -98,10 +99,7 @@ contract voting is Ownable{
 
         require(votesCount > 0, "Need at least one vote in a proprosal to stop a voting session.");
 
-        WorkflowStatus previousStatus = _currentVotingSession;
-        _currentVotingSession = WorkflowStatus.VotingSessionEnded;
-
-        emit WorkflowStatusChange(previousStatus, _currentVotingSession);
+        _changeWorkflowStatus(WorkflowStatus.VotingSessionEnded);
     }
 
     function adminTallyVotes() external onlyOwner{
@@ -116,10 +114,7 @@ contract voting is Ownable{
             }
         }
 
-        WorkflowStatus previousStatus = _currentVotingSession;
-        _currentVotingSession = WorkflowStatus.VotesTallied;
-
-        emit WorkflowStatusChange(previousStatus, _currentVotingSession);
+        _changeWorkflowStatus(WorkflowStatus.VotesTallied);
     }
 
 
