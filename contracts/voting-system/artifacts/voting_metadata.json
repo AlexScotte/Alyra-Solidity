@@ -259,11 +259,11 @@
 	},
 	"sources": {
 		"contracts/voting-system/voting.sol": {
-			"keccak256": "0xb6d4e300bfeca5678d4471010e81b919f26fd6c06f48ab23957ec70c7b26a15e",
+			"keccak256": "0x60facf2c143c3ff03412b4f806f71747d522a65656ecc9c4892dbd6cb8c1114f",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://375b362f668daa8fecee67afa5b578bdd85d0f2e59a4136882fc34a11203696c",
-				"dweb:/ipfs/QmV49XfgnaG44SsbPpDeXcrAratSqSuaF26gKVwELgu2cu"
+				"bzz-raw://140ce933ff688291f32edd0771f1bd4476ab653c34a448554a56ca89490cd2e1",
+				"dweb:/ipfs/QmYxkSxrXF49N7zmNWrznkNgwgpt8QARcnYQ5bnLiiZKon"
 			]
 		},
 		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol": {

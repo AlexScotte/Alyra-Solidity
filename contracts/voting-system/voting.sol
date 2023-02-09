@@ -35,7 +35,7 @@ contract voting is Ownable{
     mapping(address => Voter) voters;
     uint private _voterRegisteredCount = 0;
 
-    mapping(address => uint) voterProposalIds;
+    mapping(address => uint[]) voterProposalIds;
     Proposal[] voterProposals;
     
     WorkflowStatus private _currentVotingSession;
@@ -53,9 +53,9 @@ contract voting is Ownable{
 
     function adminStartProposalsSession() external onlyOwner{
 
-        require(_voterRegisteredCount > 1, "Need at least 2 registered voters to start a proposal session.");
-
-//TODO check status
+//TODO error message
+        require(_currentVotingSession == WorkflowStatus.RegisteringVoters, "The registering voters is not ended yet.");
+        require(_voterRegisteredCount > 1, "Need at least two registered voters to start a proposal session.");
 
         WorkflowStatus previousStatus = _currentVotingSession;
         _currentVotingSession = WorkflowStatus.ProposalsRegistrationStarted;
@@ -65,8 +65,8 @@ contract voting is Ownable{
 
     function adminStopProposalsSession() external onlyOwner{
 
-        // require(_voterWhitelistedCount > 1, "Need at least 2 whitelisted voter to start a proposal session.");
         require(_currentVotingSession == WorkflowStatus.ProposalsRegistrationStarted, "The proposal registration is not started yet.");
+        require(voterProposals.length > 1, "Need at least two proposals to stop a proposal session.");
 
         WorkflowStatus previousStatus = _currentVotingSession;        
         _currentVotingSession = WorkflowStatus.ProposalsRegistrationEnded;
@@ -77,7 +77,6 @@ contract voting is Ownable{
     function adminStartVotingSession() external onlyOwner{
 
         require(_currentVotingSession == WorkflowStatus.ProposalsRegistrationEnded, "The proposal registration is not ended yet.");
-        require(voterProposals.length > 1, "Need at least two proposals to start a voting session.");
 
         WorkflowStatus previousStatus = _currentVotingSession;
         _currentVotingSession = WorkflowStatus.VotingSessionStarted;
@@ -90,7 +89,7 @@ contract voting is Ownable{
 
         require(_currentVotingSession == WorkflowStatus.VotingSessionStarted, "The voting session is not started yet.");
 
-// TODO: variable count global
+        // TODO: variable count global
         uint256 votesCount = 0;
         for(uint i=0; i < voterProposals.length; i++){
             votesCount += voterProposals[i].voteCount;
@@ -107,7 +106,7 @@ contract voting is Ownable{
     }
 
     function adminTallyVotes() external onlyOwner{
-        require(_currentVotingSession == WorkflowStatus.VotingSessionEnded, "The proposal registration is not started yet.");
+        require(_currentVotingSession == WorkflowStatus.VotingSessionEnded, "The voting session is not ended yet.");
 
         // TODO: Manage equality
         uint256 votesCount = 0;
@@ -135,7 +134,7 @@ contract voting is Ownable{
 
         voterProposals.push(Proposal(_description, 0));
         uint proposalId = voterProposals.length - 1;
-        voterProposalIds[msg.sender] = proposalId;
+        voterProposalIds[msg.sender].push(proposalId);
 
         emit ProposalRegistered(proposalId);
     }
@@ -155,7 +154,7 @@ contract voting is Ownable{
 
     function getWinner() public view returns(Proposal memory) {
 
-        require(_currentVotingSession == WorkflowStatus.VotesTallied, "The count is not over yet.");
+        require(_currentVotingSession == WorkflowStatus.VotesTallied, "The vote count is not over yet.");
     
         return voterProposals[winningProposalId];
     }
