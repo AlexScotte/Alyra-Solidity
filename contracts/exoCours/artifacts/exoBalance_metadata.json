@@ -6,6 +6,10 @@
 	"output": {
 		"abi": [
 			{
+				"stateMutability": "payable",
+				"type": "fallback"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -87,6 +91,10 @@
 				],
 				"stateMutability": "payable",
 				"type": "function"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
 			}
 		],
 		"devdoc": {
@@ -117,11 +125,11 @@
 	},
 	"sources": {
 		"contracts/exoCours/exoBalance.sol": {
-			"keccak256": "0xfb8cd6c9ad639276bdf34964945803b8219bdbd9165ad1986b0c14ef04624cf5",
+			"keccak256": "0xe4b8b479b9aa69ae3e9c01a7bd3b292b7943117640ac76ef6e696ab0b0bfc500",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://0bf6450b2693c6c2aeacdf361039fab28e40546f8b6e6cd807d9cae7ae8b4989",
-				"dweb:/ipfs/QmT9PjtjXVMRmm7XujbjozLJfx4TsAc685TaC38st6FzwK"
+				"bzz-raw://a4eee4cda9f49bfbd04984a7327e8f5b8a032e03fe6bf99b84785044b0edda01",
+				"dweb:/ipfs/QmPTHZtAiWAMpMSattAEXmc6EfvG2Gn6jCzFLGCh8pmj6p"
 			]
 		}
 	},
