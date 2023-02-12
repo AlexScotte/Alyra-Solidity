@@ -4,14 +4,17 @@ pragma solidity ^0.8.13;
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract exoNotation is Ownable {
+    enum course {
+        Biology,
+        Math,
+        Fr
+    }
 
-    enum course{Biology, Math, Fr}
-
-    struct Student{
+    struct Student {
         string name;
-        uint noteBiology;
-        uint noteMath;
-        uint noteFr;
+        uint256 noteBiology;
+        uint256 noteMath;
+        uint256 noteFr;
     }
 
     mapping(course => mapping(string => Student)) notes;
@@ -22,48 +25,98 @@ contract exoNotation is Ownable {
     event studentAdded(string _name, address _addr);
     event teacherAdded(course _course, address _addr);
 
-    function addStudent(string calldata _name, address _addr) public onlyOwner{
-        students.push(Student(_name, 0,0,0));
+    function addStudent(string calldata _name, address _addr) public onlyOwner {
+        students.push(Student(_name, 0, 0, 0));
         emit studentAdded(_name, _addr);
     }
 
-    function addTeacher(course _course, address _addr) public onlyOwner{
+    function addTeacher(course _course, address _addr) public onlyOwner {
         teachers[_course] = _addr;
         emit teacherAdded(_course, _addr);
     }
 
-    function getStudentFromName(string memory _name) private view returns(uint){
-        for(uint i=0; i< students.length;i++){
-            if(keccak256(abi.encodePacked(students[i].name)) == keccak256(abi.encodePacked(_name))){
+    function getStudentFromName(string memory _name)
+        private
+        view
+        returns (uint256)
+    {
+        for (uint256 i = 0; i < students.length; i++) {
+            if (
+                keccak256(abi.encodePacked(students[i].name)) ==
+                keccak256(abi.encodePacked(_name))
+            ) {
                 return i;
             }
         }
         return 0;
     }
 
+    function calculateMeanPerCourse(course _course)
+        public
+        view
+        returns (uint256)
+    {
+        require(
+            msg.sender == teachers[_course],
+            "You are not the teacher of this class course."
+        );
+        uint256 totalNote;
+        uint256 totalStudent;
 
-    function addNote() public{
+        for (uint256 i = 0; i < students.length; i++) {
+            if (_course == course.Biology) {
+                totalNote += students[i].noteBiology;
+                totalStudent+=1;
+            } else if (_course == course.Fr) {
+                totalNote += students[i].noteFr;
+                totalStudent+=1;
 
+            } else if (_course == course.Math) {
+                totalNote += students[i].noteMath;
+                totalStudent+=1;
+            }
+        }
+        uint mean = totalNote*100/totalStudent;
+        return mean;
     }
 
-    function getNote() public{
-        
+    function calculateMeanStudent(string memory _name) public onlyOwner view returns(uint){
+        uint idStudent = getStudentFromName(_name);
+        return(students[idStudent].noteBiology+students[idStudent].noteFr+students[idStudent].noteMath)*100/3;
     }
 
-    function setNote(course _course, string calldata _nameStudent, uint _note) public{
-        
-        uint idStudent = getStudentFromName(_nameStudent);
-        require (msg.sender == teachers[_course], "You are not the teacher of this student course.");
-        if(_course == course.Biology){
+    function isPassing(string memory _name) public onlyOwner view returns(bool){
+        return calculateMeanStudent(_name) >= 1000;
+    }
+
+    function calculateMeanGlobal() public view onlyOwner returns(uint){
+        uint totalNote;
+        uint totalStudent;
+
+       for (uint256 i = 0; i < students.length; i++) {
+           totalNote+=students[i].noteBiology+students[i].noteFr+students[i].noteMath;
+           totalStudent+=3;
+       }
+        return totalNote/totalStudent;
+    }
+
+    function setNote(
+        course _course,
+        string calldata _nameStudent,
+        uint256 _note
+    ) public {
+        uint256 idStudent = getStudentFromName(_nameStudent);
+        require(
+            msg.sender == teachers[_course],
+            "You are not the teacher of this student course."
+        );
+        if (_course == course.Biology) {
             students[idStudent].noteBiology = _note;
-        }
-        else if(_course == course.Fr){
+        } else if (_course == course.Fr) {
             students[idStudent].noteFr = _note;
-        }
-        else if(_course == course.Math){
+        } else if (_course == course.Math) {
             students[idStudent].noteMath = _note;
-        }
-        else{
+        } else {
             revert("Course type does not exist.");
         }
     }

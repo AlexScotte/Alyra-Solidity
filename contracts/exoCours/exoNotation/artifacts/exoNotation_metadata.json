@@ -63,13 +63,6 @@
 				"type": "event"
 			},
 			{
-				"inputs": [],
-				"name": "addNote",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
 				"inputs": [
 					{
 						"internalType": "string",
@@ -107,9 +100,72 @@
 			},
 			{
 				"inputs": [],
-				"name": "getNote",
-				"outputs": [],
-				"stateMutability": "nonpayable",
+				"name": "calculateMeanGlobal",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "enum exoNotation.course",
+						"name": "_course",
+						"type": "uint8"
+					}
+				],
+				"name": "calculateMeanPerCourse",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_name",
+						"type": "string"
+					}
+				],
+				"name": "calculateMeanStudent",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_name",
+						"type": "string"
+					}
+				],
+				"name": "isPassing",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -223,11 +279,11 @@
 			]
 		},
 		"contracts/exoCours/exoNotation/exoNotation.sol": {
-			"keccak256": "0xe8e838ee678c0bb57d29ef6c0a511dfda372a1480296d3deb78c422a3cc7c6e5",
+			"keccak256": "0x8289edde0f18e21ea2cb3311a2641a29b7a0458813af1f31444e556d37e86f3d",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://ca4ad205944f7448a9f116d0b647e58580e753347165ad1b0ee7d7ea3ecba9c9",
-				"dweb:/ipfs/QmRExBvBmKv7kzESdReAJX1DD8s3Ym8PLnzmVmcPZzxRbB"
+				"bzz-raw://70efbc15ef58cee31ba1222d9a97fa424aa5a7b7e98fbf2ac1cccba2f97fbb36",
+				"dweb:/ipfs/QmV72QRfUKcMmsADB2LSaPcLAA3gXJULWE5SVn6wDUWpU4"
 			]
 		}
 	},
