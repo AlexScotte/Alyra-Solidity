@@ -35,6 +35,12 @@
 					},
 					{
 						"indexed": false,
+						"internalType": "string",
+						"name": "_class",
+						"type": "string"
+					},
+					{
+						"indexed": false,
 						"internalType": "address",
 						"name": "_addr",
 						"type": "address"
@@ -48,9 +54,15 @@
 				"inputs": [
 					{
 						"indexed": false,
-						"internalType": "enum exoNotation.course",
+						"internalType": "string",
+						"name": "_class",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
 						"name": "_course",
-						"type": "uint8"
+						"type": "string"
 					},
 					{
 						"indexed": false,
@@ -70,6 +82,11 @@
 						"type": "string"
 					},
 					{
+						"internalType": "string",
+						"name": "_class",
+						"type": "string"
+					},
+					{
 						"internalType": "address",
 						"name": "_addr",
 						"type": "address"
@@ -83,24 +100,12 @@
 			{
 				"inputs": [
 					{
-						"internalType": "enum exoNotation.course",
-						"name": "_course",
-						"type": "uint8"
-					},
-					{
-						"internalType": "address",
-						"name": "_addr",
-						"type": "address"
+						"internalType": "string",
+						"name": "_class",
+						"type": "string"
 					}
 				],
-				"name": "addTeacher",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "calculateMeanGlobal",
+				"name": "calculateMoyenneGenerale",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -114,12 +119,17 @@
 			{
 				"inputs": [
 					{
-						"internalType": "enum exoNotation.course",
+						"internalType": "string",
+						"name": "_class",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
 						"name": "_course",
-						"type": "uint8"
+						"type": "string"
 					}
 				],
-				"name": "calculateMeanPerCourse",
+				"name": "calculateMoyennePerCourse",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -138,7 +148,7 @@
 						"type": "string"
 					}
 				],
-				"name": "calculateMeanStudent",
+				"name": "calculateMoyenneStudent",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -191,9 +201,9 @@
 			{
 				"inputs": [
 					{
-						"internalType": "enum exoNotation.course",
+						"internalType": "string",
 						"name": "_course",
-						"type": "uint8"
+						"type": "string"
 					},
 					{
 						"internalType": "string",
@@ -207,6 +217,29 @@
 					}
 				],
 				"name": "setNote",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_class",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_course",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "_addr",
+						"type": "address"
+					}
+				],
+				"name": "setTeacher",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -248,7 +281,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/exoCours/exoNotation/exoNotation.sol": "exoNotation"
+			"contracts/exoCours/exoNotationV2/exoNotationV2.sol": "Notes"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -278,12 +311,12 @@
 				"dweb:/ipfs/QmRK2Y5Yc6BK7tGKkgsgn3aJEQGi5aakeSPZvS65PV8Xp3"
 			]
 		},
-		"contracts/exoCours/exoNotation/exoNotation.sol": {
-			"keccak256": "0xe89dea531d19e961714d4b475f1b99f8633ff97bf8744e0b0fb5d7bd557a43dd",
+		"contracts/exoCours/exoNotationV2/exoNotationV2.sol": {
+			"keccak256": "0x0e9785b706acc42eba21735ad538c4e822882112047b1d47ffeb18d5f75e9994",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://f44bd554d76a799b0804c6ae3fa9aa55d21ac35e1f78f0e2b0d1e485775b3a63",
-				"dweb:/ipfs/QmX2QgSaSw3J4bWmwQXBRVEjUPns2pUKjqXtmePYCqHXP6"
+				"bzz-raw://6b43c18cefe94ee27edbabcf16961a69a962f5359e2abe4e0686d841e8856ead",
+				"dweb:/ipfs/QmZZ3uQ2MvsLuu3SE4Y5CRa1rXvqNYVMVaEeXnRNfYSgXh"
 			]
 		}
 	},

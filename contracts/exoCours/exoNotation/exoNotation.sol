@@ -48,7 +48,7 @@ contract exoNotation is Ownable {
                 return i;
             }
         }
-        return 0;
+        revert("The student does not exist.");
     }
 
     function calculateMeanPerCourse(course _course)
