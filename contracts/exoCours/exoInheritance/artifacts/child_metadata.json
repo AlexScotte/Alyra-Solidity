@@ -1,0 +1,59 @@
+{
+	"compiler": {
+		"version": "0.8.13+commit.abaa5c0e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_value",
+						"type": "uint256"
+					}
+				],
+				"name": "setValue",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/exoCours/exoInheritance/exoInheritance.sol": "child"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/exoCours/exoInheritance/exoInheritance.sol": {
+			"keccak256": "0x6421f8c6188e3a536ebda43d9ffb8b30059de017eab4d86c2566eb32338cbf46",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://78551a4e51706e77d1fe4deb616de52e180d5add04d9370867ad864c4c70d20a",
+				"dweb:/ipfs/QmNwKCP58RGbtvD4piUZHqwC7fs4GSU6fjdBNjCWQFQ4z1"
+			]
+		}
+	},
+	"version": 1
+}

@@ -1,0 +1,45 @@
+{
+	"compiler": {
+		"version": "0.8.13+commit.abaa5c0e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/exoCours/exoInheritance/exoInheritance.sol": "parent"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/exoCours/exoInheritance/exoInheritance.sol": {
+			"keccak256": "0xe670bdbabf6697d50b380b91097ad3535b83bafed70d4ce68ad9dc53f8c6a613",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://4e8c99ae009f262917355bb3c5ceb18f0a6b5a9d6c7b72124502ab148cda831b",
+				"dweb:/ipfs/QmYawYp1G4UuoucbBemHHuyYwUzBm7YheJSDLAA9hCiZkQ"
+			]
+		}
+	},
+	"version": 1
+}
