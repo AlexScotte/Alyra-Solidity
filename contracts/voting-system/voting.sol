@@ -8,11 +8,11 @@ contract Voting is Ownable{
     uint16 private winningProposalId;
     uint16 private votesCount;
     uint16 private voterRegisteredCount;
+    WorkflowStatus private currentVotingSession;
+    Proposal[] private voterProposals;
 
     mapping(address => Voter) private voters;
     mapping(address => uint[]) private voterProposalIds;
-    Proposal[] private voterProposals;
-    WorkflowStatus private currentVotingSession;
 
     event VoterRegistered(address indexed voterAddress); 
     event WorkflowStatusChange(WorkflowStatus previousStatus, WorkflowStatus newStatus);
