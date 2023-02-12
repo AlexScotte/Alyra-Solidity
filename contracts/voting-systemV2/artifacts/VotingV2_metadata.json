@@ -1,0 +1,399 @@
+{
+	"compiler": {
+		"version": "0.8.18+commit.87f61d96"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "previousOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint16",
+						"name": "proposalId",
+						"type": "uint16"
+					}
+				],
+				"name": "ProposalRegistered",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "voter",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint16",
+						"name": "proposalId",
+						"type": "uint16"
+					}
+				],
+				"name": "Voted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "voterAddress",
+						"type": "address"
+					}
+				],
+				"name": "VoterRegistered",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "enum VotingV2.WorkflowStatus",
+						"name": "previousStatus",
+						"type": "uint8"
+					},
+					{
+						"indexed": false,
+						"internalType": "enum VotingV2.WorkflowStatus",
+						"name": "newStatus",
+						"type": "uint8"
+					}
+				],
+				"name": "WorkflowStatusChange",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "_restartSession",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_addrVoter",
+						"type": "address"
+					}
+				],
+				"name": "adminAddRegistered",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "adminStartProposalsSession",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "adminStartVotingSession",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "adminStopProposalsSession",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "adminStopVotingSession",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "adminTallyVotes",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_addr",
+						"type": "address"
+					}
+				],
+				"name": "getVoterProposals",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "description",
+								"type": "string"
+							},
+							{
+								"internalType": "uint16",
+								"name": "voteCount",
+								"type": "uint16"
+							}
+						],
+						"internalType": "struct VotingV2.Proposal[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_addr",
+						"type": "address"
+					}
+				],
+				"name": "getVoterVote",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "description",
+								"type": "string"
+							},
+							{
+								"internalType": "uint16",
+								"name": "voteCount",
+								"type": "uint16"
+							}
+						],
+						"internalType": "struct VotingV2.Proposal",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getWinner",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "description",
+								"type": "string"
+							},
+							{
+								"internalType": "uint16",
+								"name": "voteCount",
+								"type": "uint16"
+							}
+						],
+						"internalType": "struct VotingV2.Proposal",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_description",
+						"type": "string"
+					}
+				],
+				"name": "voterAddProposal",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint16",
+						"name": "_proposalId",
+						"type": "uint16"
+					}
+				],
+				"name": "voterAddVote",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {
+				"adminAddRegistered(address)": {
+					"details": "Allows only the adminstrator to add a new voter if the voter registration is started.  "
+				},
+				"adminStartProposalsSession()": {
+					"details": "Allows only the administrator to start the proposal session if the voter registration is started       and there is at least 2 registered voters."
+				},
+				"adminStartVotingSession()": {
+					"details": "Allows only the administrator to start the voting session if the proposal registration is started. "
+				},
+				"adminStopProposalsSession()": {
+					"details": "Allows only the administrator to stop the proposal session if the proposal registration is started      and there is at least 2 proposals."
+				},
+				"adminStopVotingSession()": {
+					"details": "Allows only the administrator to stop the voting session if the voting session is started      and there is at least one vote in a proposal. "
+				},
+				"adminTallyVotes()": {
+					"details": "There is nothing special to do here because now the winner is calculated dynamically when users vote,       it determines which proposal gets the most votes first, it's fairer than on the voting system V1"
+				},
+				"getVoterProposals(address)": {
+					"details": "Allows only a registered voter to check all the proposals of a registered voter.",
+					"returns": {
+						"_0": "The winning proposal"
+					}
+				},
+				"getVoterVote(address)": {
+					"details": "Allows only a registered voter to check for which proposal a registered voter has voted.",
+					"returns": {
+						"_0": "The proposal for which the voter voted"
+					}
+				},
+				"getWinner()": {
+					"details": "Allows everybody to check the winner if the vote count is over.",
+					"returns": {
+						"_0": "The winning proposal"
+					}
+				},
+				"owner()": {
+					"details": "Returns the address of the current owner."
+				},
+				"renounceOwnership()": {
+					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner."
+				},
+				"transferOwnership(address)": {
+					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+				},
+				"voterAddProposal(string)": {
+					"details": "Allows only a registered voter to add a proposal if the proposal registration is started      and the description is not empty. "
+				},
+				"voterAddVote(uint16)": {
+					"details": "Allows only a registered voter to vote if the voting session is started       and the user has not voted yet and the proposal id exists.      If the proposals has more votes than the current winning proposal, it becomes the winning proposal"
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"notice": "This is an upgrade of the voting-system. Improvements: - Admin can restart a new session after the count is over. He needs to register again voter addresses. - The first proposal to have more votes is now the winner in case of tie. The winning proposal is calculated dynamically when users votes.",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/voting-systemV2/votingV2.sol": "VotingV2"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/voting-systemV2/votingV2.sol": {
+			"keccak256": "0x0256083636f23c7472b715c31e5e0b75b213864459f3ae6c2db50b89d8cc330e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c01783413bbe530d345c8d4034f941786ca9bd4f3a5ad65ef249c8c2714ef6f3",
+				"dweb:/ipfs/QmaDo2HeFwz7W8UntWhxnpP7kpVgStZQ4ohKXvEKcyFkz5"
+			]
+		},
+		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol": {
+			"keccak256": "0xa94b34880e3c1b0b931662cb1c09e5dfa6662f31cba80e07c5ee71cd135c9673",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://40fb1b5102468f783961d0af743f91b9980cf66b50d1d12009f6bb1869cea4d2",
+				"dweb:/ipfs/QmYqEbJML4jB1GHbzD4cUZDtJg5wVwNm3vDJq1GbyDus8y"
+			]
+		},
+		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/Context.sol": {
+			"keccak256": "0xe2e337e6dde9ef6b680e07338c493ebea1b5fd09b43424112868e9cc1706bca7",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6df0ddf21ce9f58271bdfaa85cde98b200ef242a05a3f85c2bc10a8294800a92",
+				"dweb:/ipfs/QmRK2Y5Yc6BK7tGKkgsgn3aJEQGi5aakeSPZvS65PV8Xp3"
+			]
+		}
+	},
+	"version": 1
+}
