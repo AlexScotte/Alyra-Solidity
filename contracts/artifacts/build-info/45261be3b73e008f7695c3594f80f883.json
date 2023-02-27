@@ -7,7 +7,7 @@
 		"language": "Solidity",
 		"sources": {
 			"contracts/exoCours.sol": {
-				"content": "// SPDX-License-Identifier: GPL-3.0\r\npragma solidity ^0.8.13;\r\n\r\ncontract exoCours {\r\n\r\n    address myAdress;\r\n\r\n    function setAddresse(address _addr) public{\r\n\r\n        myAdress = _addr;\r\n    }\r\n\r\n    function getBalance() public view returns(uint){\r\n\r\n        return myAdress.balance;\r\n    }\r\n\r\n    function getABalance(address _addr) public view returns(uint){\r\n\r\n        return _addr.balance;\r\n    }\r\n}"
+				"content": "// SPDX-License-Identifier: GPL-3.0\r\npragma solidity 0.8.18;\r\n\r\ncontract exoCours {\r\n\r\n    address myAdress;\r\n\r\n    function setAddresse(address _addr) public{\r\n\r\n        myAdress = _addr;\r\n    }\r\n\r\n    function getBalance() public view returns(uint){\r\n\r\n        return myAdress.balance;\r\n    }\r\n\r\n    function getABalance(address _addr) public view returns(uint){\r\n\r\n        return _addr.balance;\r\n    }\r\n}"
 			}
 		},
 		"settings": {

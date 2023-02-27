@@ -7,7 +7,7 @@
 		"language": "Solidity",
 		"sources": {
 			"contracts/random/random.sol": {
-				"content": "// SPDX-License-Identifier: MIT\r\npragma solidity 0.8.13;\r\n\r\ncontract Random {\r\n\r\n    uint256 private _nonce = 0;\r\n    uint _lastRand;\r\n\r\n    function random() public returns(uint){\r\n        _nonce++;\r\n        _lastRand = uint(keccak256(abi.encodePacked(block.timestamp, msg.sender, _nonce))) % 100;\r\n        return _lastRand;\r\n    }\r\n\r\n    function getLastRandomForTest() public view returns (uint){\r\n        return _lastRand;\r\n    }\r\n}"
+				"content": "// SPDX-License-Identifier: MIT\r\npragma solidity 0.8.18;\r\n\r\ncontract Random {\r\n\r\n    uint256 private _nonce = 0;\r\n    uint _lastRand;\r\n\r\n    function random() public returns(uint){\r\n        _nonce++;\r\n        _lastRand = uint(keccak256(abi.encodePacked(block.timestamp, msg.sender, _nonce))) % 100;\r\n        return _lastRand;\r\n    }\r\n\r\n    function getLastRandomForTest() public view returns (uint){\r\n        return _lastRand;\r\n    }\r\n}"
 			}
 		},
 		"settings": {

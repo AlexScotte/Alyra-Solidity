@@ -1,10 +1,9 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.13;
+pragma solidity >=0.8.18;
 
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract admin is Ownable{
-
+contract admin is Ownable {
     event Whitelisted(address);
     event Blacklisted(address);
 
@@ -12,7 +11,6 @@ contract admin is Ownable{
     mapping(address => bool) blacklists;
 
     function whitelist(address _addr) public onlyOwner {
-        
         require(!isWhitelisted(_addr), "The address is already whitelisted.");
 
         blacklists[_addr] = false;
@@ -21,8 +19,7 @@ contract admin is Ownable{
         emit Whitelisted(_addr);
     }
 
-    function blacklist(address _addr) public onlyOwner{
-
+    function blacklist(address _addr) public onlyOwner {
         require(_addr != owner(), "You cannot blacklist the owner.");
         require(!isBlacklisted(_addr), "The address is already blacklisted.");
 
@@ -32,13 +29,11 @@ contract admin is Ownable{
         emit Blacklisted(_addr);
     }
 
-    function isWhitelisted(address _addr) public view returns(bool){
-
+    function isWhitelisted(address _addr) public view returns (bool) {
         return whitelists[_addr];
     }
 
-    function isBlacklisted(address _addr) public view returns(bool){
-
+    function isBlacklisted(address _addr) public view returns (bool) {
         return blacklists[_addr];
     }
 }

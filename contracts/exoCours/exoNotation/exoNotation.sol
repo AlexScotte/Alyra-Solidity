@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0
-pragma solidity ^0.8.13;
+pragma solidity 0.8.18;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 
@@ -66,38 +66,53 @@ contract exoNotation is Ownable {
         for (uint256 i = 0; i < students.length; i++) {
             if (_course == course.Biology) {
                 totalNote += students[i].noteBiology;
-                totalStudent+=1;
+                totalStudent += 1;
             } else if (_course == course.Fr) {
                 totalNote += students[i].noteFr;
-                totalStudent+=1;
-
+                totalStudent += 1;
             } else if (_course == course.Math) {
                 totalNote += students[i].noteMath;
-                totalStudent+=1;
+                totalStudent += 1;
             }
         }
-        uint mean = totalNote*100/totalStudent;
+        uint256 mean = (totalNote * 100) / totalStudent;
         return mean;
     }
 
-    function calculateMeanStudent(string memory _name) public onlyOwner view returns(uint){
-        uint idStudent = getStudentFromName(_name);
-        return(students[idStudent].noteBiology+students[idStudent].noteFr+students[idStudent].noteMath)*100/3;
+    function calculateMeanStudent(string memory _name)
+        public
+        view
+        onlyOwner
+        returns (uint256)
+    {
+        uint256 idStudent = getStudentFromName(_name);
+        return
+            ((students[idStudent].noteBiology +
+                students[idStudent].noteFr +
+                students[idStudent].noteMath) * 100) / 3;
     }
 
-    function isPassing(string memory _name) public onlyOwner view returns(bool){
+    function isPassing(string memory _name)
+        public
+        view
+        onlyOwner
+        returns (bool)
+    {
         return calculateMeanStudent(_name) >= 1000;
     }
 
-    function calculateMeanGlobal() public view onlyOwner returns(uint){
-        uint totalNote;
-        uint totalStudent;
+    function calculateMeanGlobal() public view onlyOwner returns (uint256) {
+        uint256 totalNote;
+        uint256 totalStudent;
 
-       for (uint256 i = 0; i < students.length; i++) {
-           totalNote+=students[i].noteBiology+students[i].noteFr+students[i].noteMath;
-           totalStudent+=3;
-       }
-        return totalNote/totalStudent;
+        for (uint256 i = 0; i < students.length; i++) {
+            totalNote +=
+                students[i].noteBiology +
+                students[i].noteFr +
+                students[i].noteMath;
+            totalStudent += 3;
+        }
+        return totalNote / totalStudent;
     }
 
     function setNote(

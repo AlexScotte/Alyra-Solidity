@@ -1,18 +1,21 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.13;
+pragma solidity 0.8.18;
 
 contract Random {
-
     uint256 private _nonce = 0;
-    uint _lastRand;
+    uint256 _lastRand;
 
-    function random() public returns(uint){
+    function random() public returns (uint256) {
         _nonce++;
-        _lastRand = uint(keccak256(abi.encodePacked(block.timestamp, msg.sender, _nonce))) % 100;
+        _lastRand =
+            uint256(
+                keccak256(abi.encodePacked(block.timestamp, msg.sender, _nonce))
+            ) %
+            100;
         return _lastRand;
     }
 
-    function getLastRandomForTest() public view returns (uint){
+    function getLastRandomForTest() public view returns (uint256) {
         return _lastRand;
     }
 }

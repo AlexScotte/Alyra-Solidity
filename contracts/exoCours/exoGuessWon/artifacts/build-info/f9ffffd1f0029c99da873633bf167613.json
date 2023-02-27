@@ -7,7 +7,7 @@
 		"language": "Solidity",
 		"sources": {
 			"contracts/exoCours/exoGuesWon/guessWon.sol": {
-				"content": "// SPDX-License-Identifier: GPL-3.0\r\npragma solidity ^0.8.13;\r\n\r\ncontract exoGuessWon {\r\n\r\n\r\n}"
+				"content": "// SPDX-License-Identifier: GPL-3.0\r\npragma solidity 0.8.18;\r\n\r\ncontract exoGuessWon {\r\n\r\n\r\n}"
 			}
 		},
 		"settings": {

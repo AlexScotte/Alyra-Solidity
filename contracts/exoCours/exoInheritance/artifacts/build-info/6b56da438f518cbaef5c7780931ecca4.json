@@ -7,7 +7,7 @@
 		"language": "Solidity",
 		"sources": {
 			"contracts/exoCours/exoInheritance/exoInheritance.sol": {
-				"content": "// SPDX-License-Identifier: GPL-3.0\r\npragma solidity ^0.8.13;\r\n\r\ncontract Parent {\r\n\r\n    uint myValue;\r\n\r\n    function setValue(uint _value) external{\r\n        myValue = _value;\r\n    }\r\n}\r\n\r\ncontract Child is Parent{\r\n\r\n    function getParentValue() external view returns(uint) {\r\n\r\n        return myValue;\r\n    }\r\n\r\n}\r\n\r\ncontract Caller{\r\n\r\n    function createChild(uint _value) public returns(uint){\r\n\r\n        Child child = new Child();\r\n        child.setValue(_value);\r\n        return child.getParentValue();\r\n    }\r\n}"
+				"content": "// SPDX-License-Identifier: GPL-3.0\r\npragma solidity 0.8.18;\r\n\r\ncontract Parent {\r\n\r\n    uint myValue;\r\n\r\n    function setValue(uint _value) external{\r\n        myValue = _value;\r\n    }\r\n}\r\n\r\ncontract Child is Parent{\r\n\r\n    function getParentValue() external view returns(uint) {\r\n\r\n        return myValue;\r\n    }\r\n\r\n}\r\n\r\ncontract Caller{\r\n\r\n    function createChild(uint _value) public returns(uint){\r\n\r\n        Child child = new Child();\r\n        child.setValue(_value);\r\n        return child.getParentValue();\r\n    }\r\n}"
 			}
 		},
 		"settings": {
