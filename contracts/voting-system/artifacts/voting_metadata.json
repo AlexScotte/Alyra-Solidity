@@ -28,10 +28,10 @@
 				"anonymous": false,
 				"inputs": [
 					{
-						"indexed": false,
-						"internalType": "uint256",
+						"indexed": true,
+						"internalType": "uint16",
 						"name": "proposalId",
-						"type": "uint256"
+						"type": "uint16"
 					}
 				],
 				"name": "ProposalRegistered",
@@ -41,16 +41,16 @@
 				"anonymous": false,
 				"inputs": [
 					{
-						"indexed": false,
+						"indexed": true,
 						"internalType": "address",
 						"name": "voter",
 						"type": "address"
 					},
 					{
-						"indexed": false,
-						"internalType": "uint256",
+						"indexed": true,
+						"internalType": "uint16",
 						"name": "proposalId",
-						"type": "uint256"
+						"type": "uint16"
 					}
 				],
 				"name": "Voted",
@@ -60,7 +60,7 @@
 				"anonymous": false,
 				"inputs": [
 					{
-						"indexed": false,
+						"indexed": true,
 						"internalType": "address",
 						"name": "voterAddress",
 						"type": "address"
@@ -74,58 +74,19 @@
 				"inputs": [
 					{
 						"indexed": false,
-						"internalType": "enum voting.WorkflowStatus",
+						"internalType": "enum Voting.WorkflowStatus",
 						"name": "previousStatus",
 						"type": "uint8"
 					},
 					{
 						"indexed": false,
-						"internalType": "enum voting.WorkflowStatus",
+						"internalType": "enum Voting.WorkflowStatus",
 						"name": "newStatus",
 						"type": "uint8"
 					}
 				],
 				"name": "WorkflowStatusChange",
 				"type": "event"
-			},
-			{
-				"inputs": [],
-				"name": "_currentVotingSession",
-				"outputs": [
-					{
-						"internalType": "enum voting.WorkflowStatus",
-						"name": "",
-						"type": "uint8"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "_voterRegisteredCount",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "_votesCount",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
 			},
 			{
 				"inputs": [
@@ -176,6 +137,68 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_addr",
+						"type": "address"
+					}
+				],
+				"name": "getVoterProposals",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "description",
+								"type": "string"
+							},
+							{
+								"internalType": "uint16",
+								"name": "voteCount",
+								"type": "uint16"
+							}
+						],
+						"internalType": "struct Voting.Proposal[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_addr",
+						"type": "address"
+					}
+				],
+				"name": "getVoterVote",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "description",
+								"type": "string"
+							},
+							{
+								"internalType": "uint16",
+								"name": "voteCount",
+								"type": "uint16"
+							}
+						],
+						"internalType": "struct Voting.Proposal",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "getWinner",
 				"outputs": [
@@ -187,12 +210,12 @@
 								"type": "string"
 							},
 							{
-								"internalType": "uint256",
+								"internalType": "uint16",
 								"name": "voteCount",
-								"type": "uint256"
+								"type": "uint16"
 							}
 						],
-						"internalType": "struct voting.Proposal",
+						"internalType": "struct Voting.Proposal",
 						"name": "",
 						"type": "tuple"
 					}
@@ -249,97 +272,56 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
+						"internalType": "uint16",
 						"name": "_proposalId",
-						"type": "uint256"
+						"type": "uint16"
 					}
 				],
 				"name": "voterAddVote",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "voterProposalIds",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "voterProposals",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "description",
-						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "voteCount",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "voters",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "isRegistered",
-						"type": "bool"
-					},
-					{
-						"internalType": "bool",
-						"name": "hasVoted",
-						"type": "bool"
-					},
-					{
-						"internalType": "uint256",
-						"name": "votedProposalId",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
 			}
 		],
 		"devdoc": {
 			"kind": "dev",
 			"methods": {
+				"adminAddRegistered(address)": {
+					"details": "Allows only the adminstrator to add a new voter if the voter registration is started.  "
+				},
+				"adminStartProposalsSession()": {
+					"details": "Allows only the administrator to start the proposal session if the voter registration is started       and there is at least 2 registered voters."
+				},
+				"adminStartVotingSession()": {
+					"details": "Allows only the administrator to start the voting session if the proposal registration is started. "
+				},
+				"adminStopProposalsSession()": {
+					"details": "Allows only the administrator to stop the proposal session if the proposal registration is started      and there is at least 2 proposals."
+				},
+				"adminStopVotingSession()": {
+					"details": "Allows only the administrator to stop the voting session if the voting session is started      and there is at least one vote in a proposal. "
+				},
+				"adminTallyVotes()": {
+					"details": "Allows only the administrator to count the votes if the voting session is stopped.       In case of a tie, the winning proposal is the first found in the list "
+				},
+				"getVoterProposals(address)": {
+					"details": "Allows only a registered voter to check all the proposals of a registered voter.",
+					"returns": {
+						"_0": "The winning proposal"
+					}
+				},
+				"getVoterVote(address)": {
+					"details": "Allows only a registered voter to check for which proposal a registered voter has voted.",
+					"returns": {
+						"_0": "The proposal for which the voter voted"
+					}
+				},
+				"getWinner()": {
+					"details": "Allows everybody to check the winner if the vote count is over.",
+					"returns": {
+						"_0": "The winning proposal"
+					}
+				},
 				"owner()": {
 					"details": "Returns the address of the current owner."
 				},
@@ -348,6 +330,12 @@
 				},
 				"transferOwnership(address)": {
 					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+				},
+				"voterAddProposal(string)": {
+					"details": "Allows only a registered voter to add a proposal if the proposal registration is started      and the description is not empty. "
+				},
+				"voterAddVote(uint16)": {
+					"details": "Allows only a registered voter to vote if the voting session is started       and the user has not voted yet and the proposal id exists."
 				}
 			},
 			"version": 1
@@ -360,7 +348,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/voting-system/voting.sol": "voting"
+			"contracts/voting-system/voting.sol": "Voting"
 		},
 		"evmVersion": "paris",
 		"libraries": {},
@@ -375,11 +363,11 @@
 	},
 	"sources": {
 		"contracts/voting-system/voting.sol": {
-			"keccak256": "0x743b93182a3b73f9db7fda16cd556946d3f7b922ae656e82b795858de0fea2cf",
+			"keccak256": "0xbbdf9c2fa178aa97a5b7f452b8eb8862bc93d5b706f946abab4d0a71db0b5a12",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d9176fabd1776cca5402fa0e838b47d3b90b1bd912ae4ff1afab2f692989d3a9",
-				"dweb:/ipfs/QmUY2VMbiqLTuqLF6PKhF3kp8xh57pRDGKEq7fyLF3BgVZ"
+				"bzz-raw://3af05453d61b508a0226859d9a0c11964afa502c503284d82569ae37462f3609",
+				"dweb:/ipfs/QmWNHS8Em8VudwCtjRsjpC3DWQ57diYMHaH9wS2n1zbjLq"
 			]
 		},
 		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol": {

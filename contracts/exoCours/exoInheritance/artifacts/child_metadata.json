@@ -6,6 +6,19 @@
 	"output": {
 		"abi": [
 			{
+				"inputs": [],
+				"name": "getParentValue",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -32,7 +45,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/exoCours/exoInheritance/exoInheritance.sol": "child"
+			"contracts/exoCours/exoInheritance/exoInheritance.sol": "Child"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -47,11 +60,11 @@
 	},
 	"sources": {
 		"contracts/exoCours/exoInheritance/exoInheritance.sol": {
-			"keccak256": "0x6421f8c6188e3a536ebda43d9ffb8b30059de017eab4d86c2566eb32338cbf46",
+			"keccak256": "0x2f62c9ff6d9438fa655333a04916c336d1fbd418100593719624e5df1702da41",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://78551a4e51706e77d1fe4deb616de52e180d5add04d9370867ad864c4c70d20a",
-				"dweb:/ipfs/QmNwKCP58RGbtvD4piUZHqwC7fs4GSU6fjdBNjCWQFQ4z1"
+				"bzz-raw://c00a7b075f3eb916ffcb6808e19490196f1a4dee065bb1fd20b8e457deb9be83",
+				"dweb:/ipfs/QmXtF8K4jm1WqQs4L6JVLd8JHGK2kVrRWJcbAnoxzweFnN"
 			]
 		}
 	},

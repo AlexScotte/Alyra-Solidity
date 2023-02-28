@@ -4,7 +4,21 @@
 	},
 	"language": "Solidity",
 	"output": {
-		"abi": [],
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_value",
+						"type": "uint256"
+					}
+				],
+				"name": "setValue",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
 		"devdoc": {
 			"kind": "dev",
 			"methods": {},
@@ -18,7 +32,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/exoCours/exoInheritance/exoInheritance.sol": "parent"
+			"contracts/exoCours/exoInheritance/exoInheritance.sol": "Parent"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -33,11 +47,11 @@
 	},
 	"sources": {
 		"contracts/exoCours/exoInheritance/exoInheritance.sol": {
-			"keccak256": "0xe670bdbabf6697d50b380b91097ad3535b83bafed70d4ce68ad9dc53f8c6a613",
+			"keccak256": "0x2f62c9ff6d9438fa655333a04916c336d1fbd418100593719624e5df1702da41",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://4e8c99ae009f262917355bb3c5ceb18f0a6b5a9d6c7b72124502ab148cda831b",
-				"dweb:/ipfs/QmYawYp1G4UuoucbBemHHuyYwUzBm7YheJSDLAA9hCiZkQ"
+				"bzz-raw://c00a7b075f3eb916ffcb6808e19490196f1a4dee065bb1fd20b8e457deb9be83",
+				"dweb:/ipfs/QmXtF8K4jm1WqQs4L6JVLd8JHGK2kVrRWJcbAnoxzweFnN"
 			]
 		}
 	},
